@@ -1,4 +1,5 @@
 <?php
+
 class Square_Form_Contact extends Zend_Form
 {
     public function init()
@@ -15,7 +16,7 @@ class Square_Form_Contact extends Zend_Form
         ->setRequired(true)
         ->addValidator('NotEmpty', true)
         ->addValidator('Alpha', true)
-        ->addFilter('HTMLEntities')
+        //->addFilter('HTMLEntities')
         ->addFilter('StringTrim');
     
     
@@ -26,7 +27,7 @@ class Square_Form_Contact extends Zend_Form
             ->setRequired(true)
             ->addValidator('NotEmpty', true)
             ->addValidator('EmailAddress', true)
-            ->addFilter('HTMLEntities')
+          //  ->addFilter('HTMLEntities')
             ->addFilter('StringToLower')
             ->addFilter('StringTrim');
     
@@ -37,12 +38,12 @@ class Square_Form_Contact extends Zend_Form
             ->setOptions(array('rows' => '8','cols' => '40'))
             ->setRequired(true)
             ->addValidator('NotEmpty', true)
-            ->addFilter('HTMLEntities')
+         //   ->addFilter('HTMLEntities')
             ->addFilter('StringTrim');
     
     
     // create captcha
-    $captcha = new Zend_Form_Element_Captcha('captcha', array(
+  /*  $captcha = new Zend_Form_Element_Captcha('captcha', array(
                                         'captcha' => array(
                                         'captcha' => 'Image',
                                         'wordLen' => 6,
@@ -56,6 +57,18 @@ class Square_Form_Contact extends Zend_Form
                                         )
                                     ));
     $captcha->setLabel('Verification code:');
+    */
+    
+    //create captcha
+        $captcha = new Zend_Form_Element_Captcha('captcha', array(
+                                        'captcha' => array(
+                                        'captcha' => 'Figlet',
+                                        'timeout' => 300,
+                                        'width'   => 300,
+                                        'height'  => 100,
+
+                                        )
+                                    ));
     
     
     // create submit button
