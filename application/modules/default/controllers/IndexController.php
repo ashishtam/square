@@ -12,7 +12,13 @@ class IndexController extends Zend_Controller_Action
     {
         // action body
     }
-
+    
+    public function formAction()
+    {
+        $objForm = new Application_Form_ExampleForm();
+        $this->view->formDisplay = $objForm;
+        
+    }
 
 }
 

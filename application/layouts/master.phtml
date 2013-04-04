@@ -13,8 +13,9 @@
         <img src="/images/logo.png" />
         </div>
         <div id="menu">
-        <a href="#">HOME</a>
-        <a href="#">SERVICES</a>
+            <a href="<?php echo $this->url(array(), 'home');?>">HOME</a>
+        <a href="<?php echo $this->url(array('page' => 'services'), 'static-content');?>">SERVICES</a>
+         <a href="<?php echo $this->url(array('page' => 'about-us'), 'static-content');?>">ABOUT US</a>
         <a href="#">CONTACT</a>
         </div>
     </div>
