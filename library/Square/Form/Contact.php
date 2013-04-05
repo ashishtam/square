@@ -2,12 +2,33 @@
 
 class Square_Form_Contact extends Zend_Form
 {
+    
+    public $formDecoraters = array(
+                    array('FormElements'),
+                    array('Form'),
+                    array('HtmlTag', array('tag' => 'div'))
+            );
+    
+    public $elementDecorators = array(
+                array('ViewHelper'),
+                array('Label'),
+                array('Errors'),
+                array('HtmlTag', array('tag' =>'p'))
+            );
+
+    public $buttonDecorators = array(
+                array('ViewHelper'),
+                array('HtmlTag', array('tag' => 'p'))
+            );
+
+    
+    
     public function init()
     {
         // initialize form
         $this->setAction('/contact/index')
-        ->setMethod('post');
-
+        ->setMethod('post')
+        ->setDecorators($this->formDecoraters);
 
         // create text input for name
         $name = new Zend_Form_Element_Text('name');
@@ -26,7 +47,8 @@ class Square_Form_Contact extends Zend_Form
                                 )
                         ))
             //->addFilter('HTMLEntities')
-            ->addFilter('StringTrim');
+            ->addFilter('StringTrim')
+            ->setDecorators($this->elementDecorators);
 
 
         // create text input for email address
@@ -47,7 +69,8 @@ class Square_Form_Contact extends Zend_Form
                                     ))
               //  ->addFilter('HTMLEntities')
                 ->addFilter('StringToLower')
-                ->addFilter('StringTrim');
+                ->addFilter('StringTrim')
+                ->setDecorators($this->elementDecorators);
 
 
         // create text input for message body
@@ -57,7 +80,8 @@ class Square_Form_Contact extends Zend_Form
                 ->setRequired(true)
                 ->addValidator('NotEmpty', true)
              //   ->addFilter('HTMLEntities')
-                ->addFilter('StringTrim');
+                ->addFilter('StringTrim')
+                ->setDecorators($this->elementDecorators);
 
 
         // create captcha
@@ -92,7 +116,8 @@ class Square_Form_Contact extends Zend_Form
         // create submit button
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('Send Message')
-                ->setOptions(array('class' => 'submit'));
+                ->setOptions(array('class' => 'submit'))
+                ->setDecorators($this->buttonDecorators);
 
 
         // attach elements to form
